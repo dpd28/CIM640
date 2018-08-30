@@ -10,13 +10,13 @@ Through the app, patients can adjust temperature settings as needed based on the
 
 ### Thought Process
 
-![biocast](BioCast Thinking.jpg)
+![biocast](BioCastThinking.jpg)
 
 **[Figure 1]** A rough plan thinking about how a patient would receive a BioCast.
 
 ### Patient Journey to Get a Biocast
 
-![biocast](BioCast 2.jpg)
+![biocast](BioCast2.jpg)
 
 **[Figure 2]** A more detailed view of the events that occur after the patient visits the hospital for an injury.
 
