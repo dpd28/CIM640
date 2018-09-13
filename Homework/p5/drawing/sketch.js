@@ -33,6 +33,7 @@ function setup() {
 function draw() {
   // put drawing code here
   strokeWeight(0)
+  // beginShape (); and make sure endShape
 
   // body
   fill (217,208,193);

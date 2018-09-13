@@ -1,0 +1,9 @@
+Dan Schiffman - creative coding.
+Nature of Code — Book
+![https://natureofcode.com/] Nature of Code
+
+Main differences will be variable types
+You don't create canvas you create Size
+And linguistic
+You have to declare type — booleans, integers, etc.
+Objects are different in javascript than in java
