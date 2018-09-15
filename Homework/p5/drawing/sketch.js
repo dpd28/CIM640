@@ -38,6 +38,8 @@ function draw() {
   // body
   fill (217,208,193);
   ellipse (562.5, 450, 426, 516);
+  // ears
+triangle (200,250,475,313,150,175);
   // face
   fill(faceColor);
   arc (475+87, facePosY+5, 339, 347, TWO_PI, PI);

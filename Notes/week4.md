@@ -26,3 +26,15 @@ Need to reset the Canvas.
 You can use Photoshop and Illustrator … translate into p5js
 
 put images into an assets folder
+
+With IF statements, be as specific as possible
+Create a compound statement
+If one section is true and another section is true, then do this.
+
+&& has to be true for both conditions
+
+HIT ZONES
+
+(see notebook)
+
+if you have a discrete condition that
