@@ -134,7 +134,7 @@ if(bodyDist < 225){
 // jiggle feet
     if(mouseIsPressed){
       toePosX = toePosX + random(-1, 1);
-    }
+     }
 
 } // do not delete!
 
