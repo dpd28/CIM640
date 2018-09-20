@@ -32,7 +32,7 @@ function preload(){
   sun = loadImage('assets/sun.png');
   moon = loadImage ('assets/moon.png');
 }
-
+// runs only once
 function setup() {
   // put setup code here
   createCanvas(400,400);
@@ -48,7 +48,9 @@ function setup() {
   });
 }
 
-
+/* loop loop loop
+Think of person doing an action
+*/
 function draw() {
   // put drawing code here
   background(255);
