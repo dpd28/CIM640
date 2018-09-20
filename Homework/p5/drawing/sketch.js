@@ -52,15 +52,10 @@ function draw() {
   // put drawing code here
     strokeWeight(0)
   // beginShape (); and make sure endShape
-  fill(255);
 
   textSize(32);
   textFont('Georgia');
-//   text("Hello, I’m Oliver.", 850,150);
-//
-// if(mouseIsPressed){
-//   text(question, 850, 200);
-// }
+
 
   // body
     fill (217,208,193);
@@ -114,22 +109,31 @@ if(bodyDist < 225){
     }
 
 
-  // first set of feet
-    fill(0);
-    ellipse (toePosX, toePosY, toeWidth, outToeHeight); // outToe one
-    ellipse (toePosX+25, toePosY, toeWidth, midToeHeight); // Midtoe two
-    ellipse (toePosX+50, toePosY, toeWidth, outToeHeight); // outToe three
-  // second set of feet
-    ellipse (toePosX+125, toePosY, toeWidth, outToeHeight); // outToe one
-    ellipse (toePosX+150, toePosY, toeWidth, midToeHeight); // Midtoe two
-    ellipse (toePosX+175, toePosY, toeWidth, outToeHeight); // outToe three
+    fill('rgb(255,245,238)');
+    rect(0, 695, windowWidth, 60);
 
+    // first set of feet
+      fill(0);
+      ellipse (toePosX, toePosY, toeWidth, outToeHeight); // outToe one
+      ellipse (toePosX+25, toePosY, toeWidth, midToeHeight); // Midtoe two
+      ellipse (toePosX+50, toePosY, toeWidth, outToeHeight); // outToe three
+    // second set of feet
+      ellipse (toePosX+125, toePosY, toeWidth, outToeHeight); // outToe one
+      ellipse (toePosX+150, toePosY, toeWidth, midToeHeight); // Midtoe two
+      ellipse (toePosX+175, toePosY, toeWidth, outToeHeight); // outToe three
+
+// change greeting to goodnight
     if(mouseOverOwl == false){
       fill(255);
       text(greeting, 850,150);
     } else {
       fill('rgb(255,215,0)')
       text(goodbye, 850, 200);
+    }
+
+// jiggle feet
+    if(mouseIsPressed){
+      toePosX = toePosX + random(-1, 1);
     }
 
 } // do not delete!
