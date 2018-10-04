@@ -17,8 +17,8 @@ var counter = 0;
 var controls = {
                   "play" : [75,400,50, "green"],
                   "stop" : [130,400, 50, "red"],
-                  "back" : [20, 400,50, "yellow"],
-                  "forward" :[185, 400, 50, "orange"]
+                  "back" : [20, 400,50, "blue"],
+                  "forward" : [185, 400, 50, "orange"]
                 };
 
 
@@ -98,23 +98,38 @@ function mousePressed (){
     if(mouseX > controls[keys][0] && mouseX < controls[keys][0] + controls[keys][2] && mouseY > controls[keys][1] && mouseY < controls[keys][1] + controls[keys][2]){
 
       state = keys; // this is referenced in the mouse and when clicked. IS the users mouse over the play or the stop or neither? Keys = key value [0] number inside matches the key value pair above
-    if(state == "forward"){
-      image(frameArray[currentFrame++],0,0); // current frame is accessing in the image array
-      console.log(controls["forward"]);
-      if(currentFrame > frameAmounts-1){
-        currentFrame = 0;
-      }
-    }
-    if(state == "back"){
-      image(frameArray[currentFrame--],0,0);
-      console.log(controls["back"]);
-      if(currentFrame-1 < 0){
-        currentFrame = 0;}
-        else {
-          currentFrame = currentFrame-1;
+
+      console.log(state);
+
+      if(state == "forward"){
+        currentFrame++; // increase by one
+        if(currentFrame >= frameArray.length){ // if you have a counter, this checks for the end of the array
+          currentFrame=0;
         }
-        image(frameArray[currentFrame], 0,0);
+      } else if(state == "back"){
+currentFrame--; // decrease by one
+if(currentFrame < 0){
+  currentFrame = frameArray.length - 1;
+}
       }
+
+    // if(state == "forward"){
+    //   image(frameArray[currentFrame++],0,0); // current frame is accessing in the image array
+    //   console.log(controls["forward"]);
+    //   if(currentFrame > frameAmounts-1){
+    //     currentFrame = 0;
+    //   }
+    // }
+    // if(state == "back"){
+    //   image(frameArray[currentFrame--],0,0);
+    //   console.log(controls["back"]);
+    //   if(currentFrame-1 < 0){
+    //     currentFrame = 0;}
+    //     else {
+    //       currentFrame = currentFrame-1;
+    //     }
+    //     image(frameArray[currentFrame], 0,0);
+    //   }
   }
 }
 }
