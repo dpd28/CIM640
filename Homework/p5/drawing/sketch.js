@@ -35,9 +35,21 @@ var pupilHeight = 34;
 var toeWidth = 25;
 var midToeHeight = 55;
 var outToeHeight = 45;
+
+var tiePos = 0;
+
+var moth;
+var firefly;
+
+
 /* ------
 End Variables
 */
+
+function preload (){
+  moth = loadImage ('assets/moth.png');
+  firefly = loadImage ('assets/firefly.png');
+}
 
 function setup() {
   // put setup code here
@@ -56,6 +68,10 @@ function draw() {
   textSize(32);
   textFont('Georgia');
 
+// add moth and firefly
+
+image (moth, 100, 300);
+image (firefly, 200, 300);
 
   // body
     fill (217,208,193);
@@ -93,14 +109,26 @@ if(bodyDist < 225){
     ellipse (525, facePosY, pupilWidth, pupilHeight); //left pupil
     ellipse (600, facePosY, pupilWidth, pupilHeight); //right pupil
     fill(0);
-    ellipse (563, 360, 12, 120); // beak
+
+    ellipse (563, 360, 12, 120); // beak, x and y in translate
     fill (feetColor);
 
+
+
   // bow tie
+  push();
+  translate(563,500); // which x, y?
+  rotate(radians(tiePos));
     fill(tieColor);
-    triangle(520,500,563,520,520,540);
-    ellipse(563,520,20,20);
-    triangle(563,520,605,500,605,540);
+    // triangle(520,500,563,520,520,540);
+    // ellipse(563,520,20,20);
+    // triangle(563,520,605,500,605,540);
+
+    triangle(-43,-20,0,0,-43,20);
+    ellipse(0,0,20,20);
+    triangle(-20,0,22,-20,22,20); // (0,20,42,0,42,40) move everything up y position by 20 pixels
+    //rotate(radians(tiePos));
+    pop();
 
     if(mouseX >=520 && mouseX <=605){
       tieColor=('black');
@@ -134,7 +162,12 @@ if(bodyDist < 225){
 // jiggle feet
     if(mouseIsPressed){
       toePosX = toePosX + random(-1, 1);
-     }
+      //tiePos = 10;
+      tiePos++;
+    }else{
+      tiePos = 0; // zeven helped with this with the beak
+    }
+
 
 } // do not delete!
 
