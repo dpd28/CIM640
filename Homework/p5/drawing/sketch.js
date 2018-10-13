@@ -5,9 +5,8 @@ First, declare variables. Then, add the value.
 
 
 // var greeting = true;
-var greeting = "Hi, I’m Oliver.";
+var greeting = "Hi, I’m Oliver.\nWould you like to meet my friends?";
 var goodbye = "I’m sleepy. Good night."
-var question = "¿Cómo se llama?";
 
 // ColorStyles
 var pupilColor = 'black';
@@ -24,7 +23,7 @@ var toePosX = 475;
 var toePosY = 695;
 
 // Size Styles
-var bodyX = 562.5;
+var bodyX = 562.5; // numerical value
 var bodyY = 450;
 var bodyWidth = 450;
 var bodyHeight = 516;
@@ -40,7 +39,19 @@ var tiePos = 0;
 
 var moth;
 var firefly;
-// var bugs = []; // array of Jitter objects
+var bugs = []; // [] is an array of Jitter objects
+
+var yesButton;
+var noButton;
+
+var yesPressed = false;
+var noPressed = false; //has not be pressed yet
+
+var easing = 0.1; // Qinyu helped me with easing!!!!
+var targetX;
+var targetY;
+var x;
+var y;
 
 /* ------
 End Variables
@@ -54,9 +65,29 @@ function preload (){
 function setup() {
   // put setup code here
     createCanvas(windowWidth, windowHeight);
-    // for (var i=0; i<50; i++) {
-    //   bugs.push(new Jitter());
-    // }
+    for (var i=0; i<50; i++) {
+      bugs.push(new Jitter());
+    }
+
+    x = mouseX;
+    y = mouseY;
+
+
+
+    yesButton = createButton("Yes"); // this is the text inside the button
+    noButton = createButton("No");
+    yesButton.position(10,50); // Deb change the position
+    noButton.position(50,50);
+    yesButton.mousePressed(function(){
+      yesPressed = true;
+      noPressed = false;
+        }
+);
+  noButton.mousePressed(function (){
+    yesPressed = false;
+    noPressed = true;
+  }
+);
 } // end setup
 
 
@@ -71,41 +102,61 @@ function draw() {
   textSize(32);
   textFont('Georgia');
 
+if(noPressed == true){
+  text("ok, let me sleep \n here are five facts about owls:", 850,150);
+
+   }
+if(noPressed == false && yesPressed == false){
+     text(greeting, 850,150);
+   }
+
+   if(yesPressed == true){
+     text("Great! Blah, blah blah for now", 850,150);
+     targetX = mouseX;
+     targetY = mouseY; // current posiiton of Y
+     x=x+(targetX-x)*easing; // Qinyu helped me with this.
+     y=y+(targetY-y)*easing;
+     image(firefly, x, y, 50, 50);
+     image(firefly, x+50, y+50);
+
+   }
+
 // add moth and firefly
 
 // image (moth, 100, 300);
 // image (firefly, 200, 300);
 
 // ADD FOR JITTER
-// for (var i=0; i<bugs.length; i++) {
-//   bugs[i].move();s
-//   bugs[i].display();
-// }
+for (var i=0; i<bugs.length; i++) {
+  bugs[i].move();
+  bugs[i].display();
+}
 
 
 
-  // Oliver's Body
+// Oliver's Body
     fill (217,208,193);
     ellipse (bodyX, bodyY, bodyWidth, bodyHeight);
     var mouseOverOwl = false;
     var bodyDist = dist(bodyX, bodyY, mouseX, mouseY);
     console.log ("bodyDist: " + bodyDist);
 
-if(bodyDist < 225){
-  mouseOverOwl = true;
-      r = 0;
-      g = 51;
-      b = 102;
-      pupilColor=(112,128,144);
-      // Moth follows mouse
-      image(moth, mouseX, mouseY);
-}  else {
-  mouseOverOwl = false;
-    r=67;
-    g=142;
-    b=172;
-    pupilColor=('black');
-}
+// OLD HOVER OVER OLIVER
+// if(bodyDist < 225){
+//   mouseOverOwl = true;
+//       r = 0;
+//       g = 51;
+//       b = 102;
+//       pupilColor=(112,128,144);
+//       // Moth follows mouse
+//       image(moth, mouseX, mouseY);
+// }  else {
+//   mouseOverOwl = false;
+//     r=67;
+//     g=142;
+//     b=172;
+//     pupilColor=('#cccccc');
+// }
 
   // ears
     triangle (420,155,550,210,390,340);
@@ -141,6 +192,7 @@ if(bodyDist < 225){
     //rotate(radians(tiePos));
     pop();
 
+// mouse changes bow tie color on hover
     if(mouseX >=520 && mouseX <=605){
       tieColor=('black');
     } else {
@@ -162,15 +214,15 @@ if(bodyDist < 225){
       ellipse (toePosX+175, toePosY, toeWidth, outToeHeight); // outToe three
 
 // change greeting to goodnight
-    if(mouseOverOwl == false){
-      fill(255);
-      text(greeting, 850,150);
-    } else {
-      fill('rgb(255,215,0)')
-      text(goodbye, 850, 200);
-    }
+    // if(mouseOverOwl == false){
+    //   fill(255);
+    //   text(greeting, 850,150);
+    // } else {
+    //   fill('rgb(255,215,0)')
+    //   text(goodbye, 850, 200);
+    // }
 
-// jiggle feet
+// jiggle feet - CHANGE THIS TO HIT ZONE!
     if(mouseIsPressed){
       toePosX = toePosX + random(-1, 1);
       //tiePos = 10;
@@ -178,24 +230,25 @@ if(bodyDist < 225){
     }else{
       tiePos = 0; // zeven helped with this with the beak
 }
-
 } // do not delete!
 
-// function Jitter() {
-//   this.x = random(width);
-//   this.y = random(height);
-//   this.diameter = random(5, 25);
-//   this.speed = 0.5;
-//
-//   this.move = function() {
-//     this.x += random(-this.speed, this.speed);
-//     this.y += random(-this.speed, this.speed);
-//   };
-//
-//   this.display = function() {
-//     image(firefly, this.x, this.y, this.diameter, this.diameter); // duplicate
-//   };
-// }
+function Jitter() {
+  this.x = random(width);
+  this.y = random(height);
+  this.diameter = random(5, 25);
+  this.speed = 0.5;
+
+  this.move = function() {
+    this.x += random(-this.speed, this.speed);
+    this.y += random(-this.speed, this.speed);
+  };
+
+  this.display = function() {
+    if (yesPressed == true){
+          image(firefly, this.x, this.y, this.diameter, this.diameter); // duplicate
+    }
+  };
+}
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
