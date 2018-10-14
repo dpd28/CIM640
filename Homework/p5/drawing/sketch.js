@@ -17,6 +17,8 @@ var r = 67;
 var g = 142;
 var b = 172;
 
+var textColor;
+
 // Position it
 var facePosY = 313;
 var toePosX = 475;
@@ -72,12 +74,12 @@ function setup() {
     x = mouseX;
     y = mouseY;
 
-
+    textColor = color(255, 255, 255)
 
     yesButton = createButton("Yes"); // this is the text inside the button
     noButton = createButton("No");
-    yesButton.position(10,50); // Deb change the position
-    noButton.position(50,50);
+    yesButton.position(850,250); // Deb change the position
+    noButton.position(925,250);
     yesButton.mousePressed(function(){
       yesPressed = true;
       noPressed = false;
@@ -98,9 +100,9 @@ function draw() {
   // put drawing code here
     strokeWeight(0)
   // beginShape (); and make sure endShape
-
+ fill(textColor);
   textSize(32);
-  textFont('Georgia');
+  textFont('Helvetica');
 
 if(noPressed == true){
   text("ok, let me sleep \n here are five facts about owls:", 850,150);
@@ -117,7 +119,13 @@ if(noPressed == false && yesPressed == false){
      x=x+(targetX-x)*easing; // Qinyu helped me with this.
      y=y+(targetY-y)*easing;
      image(firefly, x, y, 50, 50);
+     image(moth, x+70, y-70, 25, 25);
      image(firefly, x+50, y+50);
+     image(moth, x-70, y-20, 40, 40);
+// change background color
+     r = 0;
+     g = 51;
+     b = 102;
 
    }
 
@@ -137,11 +145,11 @@ for (var i=0; i<bugs.length; i++) {
 // Oliver's Body
     fill (217,208,193);
     ellipse (bodyX, bodyY, bodyWidth, bodyHeight);
-    var mouseOverOwl = false;
-    var bodyDist = dist(bodyX, bodyY, mouseX, mouseY);
-    console.log ("bodyDist: " + bodyDist);
 
 // OLD HOVER OVER OLIVER
+    // var mouseOverOwl = false;
+    // var bodyDist = dist(bodyX, bodyY, mouseX, mouseY);
+    // console.log ("bodyDist: " + bodyDist);
 // if(bodyDist < 225){
 //   mouseOverOwl = true;
 //       r = 0;
@@ -235,7 +243,7 @@ for (var i=0; i<bugs.length; i++) {
 function Jitter() {
   this.x = random(width);
   this.y = random(height);
-  this.diameter = random(5, 25);
+  this.diameter = random(15,40);
   this.speed = 0.5;
 
   this.move = function() {
