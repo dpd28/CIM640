@@ -5,8 +5,9 @@ First, declare variables. Then, add the value.
 
 
 // var greeting = true;
-var greeting = "Hi, I’m Oliver.\nWould you like to meet my friends?";
+var greeting = "Hi, I’m Oliver, an owl.\nWould you like to meet my friends?";
 var goodbye = "I’m sleepy. Good night."
+var instructions = "Press the arrow keys to learn more about owls";
 
 // ColorStyles
 var pupilColor = 'black';
@@ -17,6 +18,7 @@ var r = 67;
 var g = 142;
 var b = 172;
 
+var myFont;
 var textColor;
 
 // Position it
@@ -45,6 +47,7 @@ var bugs = []; // [] is an array of Jitter objects
 
 var yesButton;
 var noButton;
+var resetButton;
 
 var yesPressed = false;
 var noPressed = false; //has not be pressed yet
@@ -54,6 +57,7 @@ var targetX;
 var targetY;
 var x;
 var y;
+var value = 0;
 
 /* ------
 End Variables
@@ -62,6 +66,7 @@ End Variables
 function preload (){
   moth = loadImage ('assets/moth.png');
   firefly = loadImage ('assets/firefly.png');
+  myFont = loadFont ('assets/Firme/Firme-Bold.otf');
 }
 
 function setup() {
@@ -78,8 +83,10 @@ function setup() {
 
     yesButton = createButton("Yes"); // this is the text inside the button
     noButton = createButton("No");
-    yesButton.position(850,250); // Deb change the position
-    noButton.position(925,250);
+    resetButton = createButton("Reset");
+    yesButton.position(855,250); // Deb change the position
+    noButton.position(920,250);
+    resetButton.position(985, 250);
     yesButton.mousePressed(function(){
       yesPressed = true;
       noPressed = false;
@@ -101,11 +108,11 @@ function draw() {
     strokeWeight(0)
   // beginShape (); and make sure endShape
  fill(textColor);
-  textSize(32);
-  textFont('Helvetica');
+  textSize(30);
+  textFont(myFont);
 
 if(noPressed == true){
-  text("ok, let me sleep \n here are five facts about owls:", 850,150);
+  text("OK, I'm sad.\nCome back soon.", 850,150);
 
    }
 if(noPressed == false && yesPressed == false){
@@ -113,7 +120,7 @@ if(noPressed == false && yesPressed == false){
    }
 
    if(yesPressed == true){
-     text("Great! Blah, blah blah for now", 850,150);
+     text("Yay! Meet the fireflies.\nThey make me smile.", 850,150);
      targetX = mouseX;
      targetY = mouseY; // current posiiton of Y
      x=x+(targetX-x)*easing; // Qinyu helped me with this.
@@ -139,8 +146,13 @@ for (var i=0; i<bugs.length; i++) {
   bugs[i].move();
   bugs[i].display();
 }
+// keypressed example
+  fill(value);
+  rect(25, 25, 50, 50);
 
-
+  fill('white');
+  textSize(12);
+  text(instructions, 25, 600);
 
 // Oliver's Body
     fill (217,208,193);
@@ -166,11 +178,16 @@ for (var i=0; i<bugs.length; i++) {
 //     pupilColor=('#cccccc');
 // }
 
-  // ears
+// ears
     triangle (420,155,550,210,390,340);
     triangle (600,210,700,155,720,340);
 
-  // face
+// bellybutton
+  fill ('red');
+  ellipse (563, 600, 20, 20); // beak, x and y in translate
+
+
+// face
     fill(faceColor);
     arc (475+87, facePosY+5, 339, 347, TWO_PI, PI);
     fill (faceColor);
@@ -185,7 +202,7 @@ for (var i=0; i<bugs.length; i++) {
     fill (feetColor);
 
 
-  // bow tie
+// bow tie
   push();
   translate(563,500); // which x, y?
   rotate(radians(tiePos));
@@ -196,7 +213,7 @@ for (var i=0; i<bugs.length; i++) {
 
     triangle(-43,-20,0,0,-43,20);
     ellipse(0,0,20,20);
-    triangle(-20,0,22,-20,22,20); // (0,20,42,0,42,40) move everything up y position by 20 pixels
+    triangle(0,0,42,-20,42,20); // (0,20,42,0,42,40) move everything up y position by 20 pixels
     //rotate(radians(tiePos));
     pop();
 
@@ -239,6 +256,15 @@ for (var i=0; i<bugs.length; i++) {
       tiePos = 0; // zeven helped with this with the beak
 }
 } // do not delete!
+
+
+function keyPressed() {
+  if (value === 0) {
+    value = 255;
+  } else {
+    value = 0;
+  }
+}
 
 function Jitter() {
   this.x = random(width);
