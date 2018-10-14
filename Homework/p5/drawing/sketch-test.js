@@ -35,8 +35,8 @@ function draw() {
   }
 
   image(moth, mouseX, mouseY);
-  }
-
+  };
+}
 
 // Jitter class
 function Jitter() {

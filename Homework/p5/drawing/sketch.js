@@ -3,7 +3,7 @@ These are global variables. placement at the top.
 First, declare variables. Then, add the value.
 */
 
-
+// Text
 // var greeting = true;
 var greeting = "Hi, I’m Oliver, an owl.\nWould you like to meet my friends?";
 var goodbye = "I’m sleepy. Good night."
@@ -18,6 +18,7 @@ var r = 67;
 var g = 142;
 var b = 172;
 
+// Type Styles
 var myFont;
 var textColor;
 
@@ -41,23 +42,32 @@ var outToeHeight = 45;
 
 var tiePos = 0;
 
+// Images
 var moth;
 var firefly;
 var bugs = []; // [] is an array of Jitter objects
 
+// Buttons
 var yesButton;
 var noButton;
 var resetButton;
 
+// Interactions
 var yesPressed = false;
-var noPressed = false; //has not be pressed yet
+var noPressed = false; // false because btn has not be pressed yet
+var resetPressed = false;
 
 var easing = 0.1; // Qinyu helped me with easing!!!!
 var targetX;
 var targetY;
 var x;
 var y;
+
 var value = 0;
+
+var bellyBX = 50;
+var bellyBY = 50;
+var bellyBEdge = 20;
 
 /* ------
 End Variables
@@ -81,22 +91,31 @@ function setup() {
 
     textColor = color(255, 255, 255)
 
+// create the buttons
     yesButton = createButton("Yes"); // this is the text inside the button
     noButton = createButton("No");
     resetButton = createButton("Reset");
+// Posiiton the buttons
     yesButton.position(855,250); // Deb change the position
     noButton.position(920,250);
     resetButton.position(985, 250);
+// Button input
     yesButton.mousePressed(function(){
       yesPressed = true;
       noPressed = false;
-        }
-);
-  noButton.mousePressed(function (){
-    yesPressed = false;
-    noPressed = true;
-  }
-);
+    }
+  );
+    noButton.mousePressed(function (){
+      yesPressed = false;
+      noPressed = true;
+    }
+  );
+    resetButton.mousePressed(function (){
+      yesPressed = false;
+      noPressed = false;
+      resetPressed = true;
+    }
+  );
 } // end setup
 
 
@@ -104,31 +123,33 @@ function setup() {
 function draw() {
   background(r,g,b); // connected to variable
 
-  // put drawing code here
+// put drawing code here
     strokeWeight(0)
-  // beginShape (); and make sure endShape
- fill(textColor);
+// beginShape (); and make sure endShape
+  fill(textColor);
   textSize(30);
   textFont(myFont);
 
+// Button Outputs
 if(noPressed == true){
   text("OK, I'm sad.\nCome back soon.", 850,150);
-
    }
+
 if(noPressed == false && yesPressed == false){
      text(greeting, 850,150);
+
    }
 
-   if(yesPressed == true){
+if(yesPressed == true){
      text("Yay! Meet the fireflies.\nThey make me smile.", 850,150);
      targetX = mouseX;
      targetY = mouseY; // current posiiton of Y
      x=x+(targetX-x)*easing; // Qinyu helped me with this.
      y=y+(targetY-y)*easing;
      image(firefly, x, y, 50, 50);
-     image(moth, x+70, y-70, 25, 25);
+     image(firefly, x+70, y-70, 25, 25);
      image(firefly, x+50, y+50);
-     image(moth, x-70, y-20, 40, 40);
+     image(firefly, x-70, y-20, 40, 40);
 // change background color
      r = 0;
      g = 51;
@@ -183,6 +204,7 @@ for (var i=0; i<bugs.length; i++) {
     triangle (600,210,700,155,720,340);
 
 // bellybutton
+  text("Move over my belly button to see what happens.", 800,600);
   fill ('red');
   ellipse (563, 600, 20, 20); // beak, x and y in translate
 
