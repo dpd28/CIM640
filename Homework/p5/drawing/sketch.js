@@ -6,8 +6,12 @@ First, declare variables. Then, add the value.
 // Text
 // var greeting = true;
 var greeting = "Hi, I’m Oliver, an owl.\nWould you like to meet my friends?";
+
 // var goodbye = "I’m sleepy. Good night."
 var instructions = "Press the arrow keys to learn more about owls";
+
+// This is an array of owl facts. 0 = the first one
+var owlFacts = ["There are around 200 different owl species, Owls are active at night (nocturnal).", "A group of owls is called a parliament.", "Most owls hunt insects, small mammals and other birds.", "Some owl species hunt fish., Owls can turn their heads as much as 270 degrees.", "Owls are very quiet in flight compared to other birds of prey.", "Owls have powerful talons (claws) which help them catch and kill prey.", "Owls are farsighted, meaning they can’t see things close to their eyes clearly."];
 
 // ColorStyles
 var pupilColor = 'black';
@@ -55,6 +59,7 @@ var noButton;
 var resetButton;
 
 // Interactions
+
 var yesPressed = false;
 var noPressed = false; // false because btn hasn't been pressed
 var resetPressed = false;
@@ -66,8 +71,6 @@ var x;
 var y;
 
 var value = 0; // keypressed test example
-
-var owlFacts;
 
 // Create hit zone shape and figure out distance
 var bellyColor = 'white';
@@ -85,7 +88,7 @@ function preload (){
   tree = loadImage ('assets/tree-dblue@2x.png');
   tree2 = loadImage ('assets/tree-dblue-wide@2x.png');
   myFont = loadFont ('assets/Firme/Firme-Bold.otf');
-  owlFacts = loadTable('assets/owl-facts.csv');
+  // owlFacts = loadTable('assets/owl-facts.csv');
 }
 
 function setup() {
@@ -93,9 +96,14 @@ function setup() {
     createCanvas(windowWidth, windowHeight);
 
   // Owl facts from CSV file
-  for (var i = 0; i < owlFacts.getRowCount(); i++){
-    var owlInfo = owlFacts.get(i, 0);
-    print(owlInfo);
+  // for (var i = 0; i < owlFacts.getRowCount(); i++){
+  //   var owlInfo = owlFacts.get(i, 0);
+  //   print(owlInfo);
+  // }
+
+//Testing
+  for (var i = 0; i<10; i++){
+    owlFacts[i] = random;
   }
 
   // Fireflies
@@ -120,11 +128,16 @@ function setup() {
     yesButton.mousePressed(function(){
       yesPressed = true;
       noPressed = false;
+      resetPressed = false;
     }
   );
     noButton.mousePressed(function (){
       yesPressed = false;
       noPressed = true;
+      resetPressed = false;
+      r = 67; // values in the setup??
+      g = 142;
+      b = 172;
     }
   );
     resetButton.mousePressed(function (){
@@ -177,7 +190,7 @@ if(yesPressed == true){
      b = 102;
    }
 
-// can't figure out why this doesn't work 
+// can't figure out why this doesn't work
    if(resetPressed == true){
      r = 67;
      g = 142;
@@ -200,6 +213,11 @@ for (var i=0; i<bugs.length; i++) {
   fill('white');
   textSize(12);
   text(instructions, 25, 600);
+
+  // Owl Facts
+    fill('white');
+    rect(850,620,500,50);
+
 
 // Oliver's Body
     fill (217,208,193);
@@ -326,9 +344,6 @@ for (var i=0; i<bugs.length; i++) {
 }
 */
 
-// Owl Facts
-  fill('white');
-  rect(850,620,500,50);
 
 } // do not delete!
 
@@ -341,6 +356,8 @@ function keyPressed() {
     value = 0;
   }
 }
+
+// From p5js Reference
 
 function Jitter() {
   this.x = random(width);
