@@ -27,7 +27,6 @@ make sure they are working
 function preload(){
   sun = loadImage('assets/sun.png');
   moon = loadImage ('assets/moon.png');
-  tree = loadImage ('assets/pine-tree.png');
 }
 
 function setup() {
