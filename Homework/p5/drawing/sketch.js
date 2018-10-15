@@ -6,7 +6,7 @@ First, declare variables. Then, add the value.
 // Text
 // var greeting = true;
 var greeting = "Hi, I’m Oliver, an owl.\nWould you like to meet my friends?";
-var goodbye = "I’m sleepy. Good night."
+// var goodbye = "I’m sleepy. Good night."
 var instructions = "Press the arrow keys to learn more about owls";
 
 // ColorStyles
@@ -45,6 +45,8 @@ var tiePos = 0;
 // Images
 var moth;
 var firefly;
+var tree;
+var tree2;
 var bugs = []; // [] is an array of Jitter objects
 
 // Buttons
@@ -54,7 +56,7 @@ var resetButton;
 
 // Interactions
 var yesPressed = false;
-var noPressed = false; // false because btn has not be pressed yet
+var noPressed = false; // false because btn hasn't been pressed
 var resetPressed = false;
 
 var easing = 0.1; // Qinyu helped me with easing!!!!
@@ -63,10 +65,14 @@ var targetY;
 var x;
 var y;
 
-var value = 0;
+var value = 0; // keypressed test example
 
-var bellyBX = 50;
-var bellyBY = 50;
+var owlFacts;
+
+// Create hit zone shape and figure out distance
+var bellyColor = 'white';
+var bellyBX = 563;
+var bellyBY = 600;
 var bellyBEdge = 20;
 
 /* ------
@@ -76,12 +82,23 @@ End Variables
 function preload (){
   moth = loadImage ('assets/moth.png');
   firefly = loadImage ('assets/firefly.png');
+  tree = loadImage ('assets/tree-dblue@2x.png');
+  tree2 = loadImage ('assets/tree-dblue-wide@2x.png');
   myFont = loadFont ('assets/Firme/Firme-Bold.otf');
+  owlFacts = loadTable('assets/owl-facts.csv');
 }
 
 function setup() {
   // put setup code here
     createCanvas(windowWidth, windowHeight);
+
+  // Owl facts from CSV file
+  for (var i = 0; i < owlFacts.getRowCount(); i++){
+    var owlInfo = owlFacts.get(i, 0);
+    print(owlInfo);
+  }
+
+  // Fireflies
     for (var i=0; i<50; i++) {
       bugs.push(new Jitter());
     }
@@ -95,8 +112,8 @@ function setup() {
     yesButton = createButton("Yes"); // this is the text inside the button
     noButton = createButton("No");
     resetButton = createButton("Reset");
-// Posiiton the buttons
-    yesButton.position(855,250); // Deb change the position
+// Position the buttons
+    yesButton.position(855,250);
     noButton.position(920,250);
     resetButton.position(985, 250);
 // Button input
@@ -121,23 +138,24 @@ function setup() {
 
 
 function draw() {
-  background(r,g,b); // connected to variable
+  background(r,g,b);
+  image(tree,75,40); // connected to variable
+  image(tree2, 920,100);
 
 // put drawing code here
-    strokeWeight(0)
-// beginShape (); and make sure endShape
+  strokeWeight(0);
   fill(textColor);
   textSize(30);
   textFont(myFont);
 
 // Button Outputs
 if(noPressed == true){
-  text("OK, I'm sad.\nCome back soon.", 850,150);
+  text("OK, maybe next time.", 850,150);
    }
 
 if(noPressed == false && yesPressed == false){
      text(greeting, 850,150);
-
+// how to change background color to default?
    }
 
 if(yesPressed == true){
@@ -154,11 +172,9 @@ if(yesPressed == true){
      r = 0;
      g = 51;
      b = 102;
-
    }
 
 // add moth and firefly
-
 // image (moth, 100, 300);
 // image (firefly, 200, 300);
 
@@ -204,9 +220,20 @@ for (var i=0; i<bugs.length; i++) {
     triangle (600,210,700,155,720,340);
 
 // bellybutton
+  fill(bellyColor);
   text("Move over my belly button to see what happens.", 800,600);
-  fill ('red');
-  ellipse (563, 600, 20, 20); // beak, x and y in translate
+  fill ('rgb(139,131,120)');
+  ellipse (bellyBX, bellyBY, bellyBEdge, bellyBEdge); // beak, x and y in translate
+  var cDist = dist(bellyBX,bellyBY,mouseX,mouseY);
+  console.log ("cDist: " + cDist);
+
+// change to jiggle and rotate
+  if(cDist < 10){
+    toePosX = toePosX + random(-1, 1);
+    tiePos++;
+  }else{
+    tiePos = 0;
+} // else statement is your default
 
 
 // face
@@ -225,23 +252,32 @@ for (var i=0; i<bugs.length; i++) {
 
 
 // bow tie
+
   push();
   translate(563,500); // which x, y?
   rotate(radians(tiePos));
     fill(tieColor);
+
+    // Original values to position bow tie
     // triangle(520,500,563,520,520,540);
     // ellipse(563,520,20,20);
     // triangle(563,520,605,500,605,540);
 
+
     triangle(-43,-20,0,0,-43,20);
     ellipse(0,0,20,20);
-    triangle(0,0,42,-20,42,20); // (0,20,42,0,42,40) move everything up y position by 20 pixels
+    triangle(0,0,42,-20,42,20);
+
+
+    // (0,20,42,0,42,40) move everything up y position by 20 pixels
     //rotate(radians(tiePos));
+
     pop();
+
 
 // mouse changes bow tie color on hover
     if(mouseX >=520 && mouseX <=605){
-      tieColor=('black');
+      tieColor=('#ff1493');
     } else {
       tieColor=('rgb(163,0,0)');
     }
@@ -269,17 +305,25 @@ for (var i=0; i<bugs.length; i++) {
     //   text(goodbye, 850, 200);
     // }
 
-// jiggle feet - CHANGE THIS TO HIT ZONE!
-    if(mouseIsPressed){
+// Changed this from mousepressed to hit zone.
+/*
+ if(mouseIsPressed){
       toePosX = toePosX + random(-1, 1);
       //tiePos = 10;
       tiePos++;
     }else{
       tiePos = 0; // zeven helped with this with the beak
 }
+*/
+
+// Owl Facts
+  fill('white');
+  rect(850,620,500,50);
+
 } // do not delete!
 
 
+// Facts?
 function keyPressed() {
   if (value === 0) {
     value = 255;

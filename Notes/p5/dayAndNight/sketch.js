@@ -27,6 +27,7 @@ make sure they are working
 function preload(){
   sun = loadImage('assets/sun.png');
   moon = loadImage ('assets/moon.png');
+  tree = loadImage ('assets/pine-tree.png');
 }
 
 function setup() {
@@ -45,7 +46,7 @@ function draw() {
   // background(bgColor);
 background(r,g,b); // tied to the variable
 console.log ("mouseX: " + mouseX + " mouseY: " + mouseY);
-// This is the interface
+// This is the interface for 1/2 day and 1/2 night
 // textSize('Font Size 16');
   text("Move over each area to reveal a surprise!", 20,20);
   line(width/2,0, width/2, height);
