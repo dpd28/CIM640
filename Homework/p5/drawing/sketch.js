@@ -156,6 +156,9 @@ if(noPressed == true){
 if(noPressed == false && yesPressed == false){
      text(greeting, 850,150);
 // how to change background color to default?
+    r = 67;
+    g = 142;
+    b = 172;
    }
 
 if(yesPressed == true){
@@ -172,6 +175,13 @@ if(yesPressed == true){
      r = 0;
      g = 51;
      b = 102;
+   }
+
+// can't figure out why this doesn't work 
+   if(resetPressed == true){
+     r = 67;
+     g = 142;
+     b = 172;
    }
 
 // add moth and firefly
