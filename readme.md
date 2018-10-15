@@ -13,7 +13,3 @@ Because I'm interested in health and wellness.
 ### Oliver, the owl.
 Because I love owls.
 [See my first p5js illustration and series of interactions](https://dpd28.github.io/CIM640/Homework/p5/drawing/) »
-
-[Click here for google.com](http://www.google.com/)
-
-![Autumn](https://unsplash.com/photos/Z7ZFUfQFuMA)
