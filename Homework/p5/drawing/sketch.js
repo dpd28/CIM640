@@ -8,10 +8,10 @@ First, declare variables. Then, add the value.
 var greeting = "Hi, I’m Oliver, an owl.\nWould you like to meet my friends?";
 
 // var goodbye = "I’m sleepy. Good night."
-var instructions = "Press the arrow keys to learn more about owls";
+var instructions = "Press any key to learn more about owls below";
 
 // This is an array of owl facts. 0 = the first one
-var owlFacts = ["There are around 200 different owl species, Owls are active at night (nocturnal).", "A group of owls is called a parliament.", "Most owls hunt insects, small mammals and other birds.", "Some owl species hunt fish., Owls can turn their heads as much as 270 degrees.", "Owls are very quiet in flight compared to other birds of prey.", "Owls have powerful talons (claws) which help them catch and kill prey.", "Owls are farsighted, meaning they can’t see things close to their eyes clearly."];
+var owlFacts = ["There are around 200 different owl species, Owls are active at night (nocturnal).", "A group of owls is called a parliament.", "Most owls hunt insects, small mammals and other birds.", "Some owl species hunt fish.", "Owls can turn their heads as much as 270 degrees.", "Owls are very quiet in flight compared to other birds of prey.", "Owls have powerful talons (claws) which help them catch and kill prey.", "Owls are farsighted, meaning they can’t see things close to their eyes clearly."];
 
 // ColorStyles
 var pupilColor = 'black';
@@ -21,6 +21,10 @@ var tieColor = 'rgb(163,0,0)';
 var r = 67;
 var g = 142;
 var b = 172;
+var factsColor = 'rgb(163,0,0)';
+
+var keyPressedCount=0;
+var yesKeyPressed=false;
 
 // Type Styles
 var myFont;
@@ -70,17 +74,13 @@ var targetY;
 var x;
 var y;
 
-var value = 0; // keypressed test example
-
 // Create hit zone shape and figure out distance
 var bellyColor = 'white';
 var bellyBX = 563;
 var bellyBY = 600;
 var bellyBEdge = 20;
 
-/* ------
-End Variables
-*/
+/* ------------------- End Variables -------------- */
 
 function preload (){
   moth = loadImage ('assets/moth.png');
@@ -88,25 +88,13 @@ function preload (){
   tree = loadImage ('assets/tree-dblue@2x.png');
   tree2 = loadImage ('assets/tree-dblue-wide@2x.png');
   myFont = loadFont ('assets/Firme/Firme-Bold.otf');
-  // owlFacts = loadTable('assets/owl-facts.csv');
 }
 
 function setup() {
   // put setup code here
     createCanvas(windowWidth, windowHeight);
 
-  // Owl facts from CSV file
-  // for (var i = 0; i < owlFacts.getRowCount(); i++){
-  //   var owlInfo = owlFacts.get(i, 0);
-  //   print(owlInfo);
-  // }
-
-//Testing
-  for (var i = 0; i<10; i++){
-    owlFacts[i] = random;
-  }
-
-  // Fireflies
+  // Fireflies, code from p5js reference section
     for (var i=0; i<50; i++) {
       bugs.push(new Jitter());
     }
@@ -121,9 +109,9 @@ function setup() {
     noButton = createButton("No");
     resetButton = createButton("Reset");
 // Position the buttons
-    yesButton.position(855,250);
-    noButton.position(920,250);
-    resetButton.position(985, 250);
+    yesButton.position(855,225);
+    noButton.position(920,225);
+    resetButton.position(983,225);
 // Button input
     yesButton.mousePressed(function(){
       yesPressed = true;
@@ -135,7 +123,7 @@ function setup() {
       yesPressed = false;
       noPressed = true;
       resetPressed = false;
-      r = 67; // values in the setup??
+      r = 67;
       g = 142;
       b = 172;
     }
@@ -149,13 +137,11 @@ function setup() {
 } // end setup
 
 
-
 function draw() {
   background(r,g,b);
-  image(tree,75,40); // connected to variable
+  image(tree,75,40);
   image(tree2, 920,100);
 
-// put drawing code here
   strokeWeight(0);
   fill(textColor);
   textSize(30);
@@ -163,12 +149,11 @@ function draw() {
 
 // Button Outputs
 if(noPressed == true){
-  text("OK, maybe next time.", 850,150);
+    text("OK, maybe next time.", 850,150);
    }
 
 if(noPressed == false && yesPressed == false){
-     text(greeting, 850,150);
-// how to change background color to default?
+    text(greeting, 850,150);
     r = 67;
     g = 142;
     b = 172;
@@ -190,70 +175,39 @@ if(yesPressed == true){
      b = 102;
    }
 
-// can't figure out why this doesn't work
-   if(resetPressed == true){
+if(resetPressed == true){
      r = 67;
      g = 142;
      b = 172;
    }
-
-// add moth and firefly
-// image (moth, 100, 300);
-// image (firefly, 200, 300);
 
 // ADD FOR JITTER
 for (var i=0; i<bugs.length; i++) {
   bugs[i].move();
   bugs[i].display();
 }
-// keypressed example
-  fill(value);
-  rect(25, 25, 50, 50);
 
+
+// Instructions to tell user to key press
   fill('white');
-  textSize(12);
-  text(instructions, 25, 600);
-
-  // Owl Facts
-    fill('white');
-    rect(850,620,500,50);
-
+  textSize(15);
+  text(instructions, 850, 670);
 
 // Oliver's Body
     fill (217,208,193);
     ellipse (bodyX, bodyY, bodyWidth, bodyHeight);
-
-// OLD HOVER OVER OLIVER
-    // var mouseOverOwl = false;
-    // var bodyDist = dist(bodyX, bodyY, mouseX, mouseY);
-    // console.log ("bodyDist: " + bodyDist);
-// if(bodyDist < 225){
-//   mouseOverOwl = true;
-//       r = 0;
-//       g = 51;
-//       b = 102;
-//       pupilColor=(112,128,144);
-//       // Moth follows mouse
-//       image(moth, mouseX, mouseY);
-// }  else {
-//   mouseOverOwl = false;
-//     r=67;
-//     g=142;
-//     b=172;
-//     pupilColor=('#cccccc');
-// }
 
 // ears
     triangle (420,155,550,210,390,340);
     triangle (600,210,700,155,720,340);
 
 // bellybutton
-  fill(bellyColor);
-  text("Move over my belly button to see what happens.", 800,600);
-  fill ('rgb(139,131,120)');
-  ellipse (bellyBX, bellyBY, bellyBEdge, bellyBEdge); // beak, x and y in translate
-  var cDist = dist(bellyBX,bellyBY,mouseX,mouseY);
-  console.log ("cDist: " + cDist);
+    fill(bellyColor);
+    text("Move over my belly button to see what happens.", 20,600);
+    fill ('rgb(139,131,120)');
+    ellipse (bellyBX, bellyBY, bellyBEdge, bellyBEdge); // beak, x and y in translate
+    var cDist = dist(bellyBX,bellyBY,mouseX,mouseY);
+//  console.log ("cDist: " + cDist);
 
 // change to jiggle and rotate
   if(cDist < 10){
@@ -280,10 +234,9 @@ for (var i=0; i<bugs.length; i++) {
 
 
 // bow tie
-
   push();
-  translate(563,500); // which x, y?
-  rotate(radians(tiePos));
+    translate(563,500); // which x, y?
+    rotate(radians(tiePos));
     fill(tieColor);
 
     // Original values to position bow tie
@@ -300,7 +253,7 @@ for (var i=0; i<bugs.length; i++) {
     // (0,20,42,0,42,40) move everything up y position by 20 pixels
     //rotate(radians(tiePos));
 
-    pop();
+  pop();
 
 
 // mouse changes bow tie color on hover
@@ -310,7 +263,7 @@ for (var i=0; i<bugs.length; i++) {
       tieColor=('rgb(163,0,0)');
     }
 
-
+// Branch
     fill('rgb(255,245,238)');
     rect(0, 695, windowWidth, 60);
 
@@ -324,41 +277,22 @@ for (var i=0; i<bugs.length; i++) {
       ellipse (toePosX+150, toePosY, toeWidth, midToeHeight); // Midtoe two
       ellipse (toePosX+175, toePosY, toeWidth, outToeHeight); // outToe three
 
-// change greeting to goodnight
-    // if(mouseOverOwl == false){
-    //   fill(255);
-    //   text(greeting, 850,150);
-    // } else {
-    //   fill('rgb(255,215,0)')
-    //   text(goodbye, 850, 200);
-    // }
-
-// Changed this from mousepressed to hit zone.
-/*
- if(mouseIsPressed){
-      toePosX = toePosX + random(-1, 1);
-      //tiePos = 10;
-      tiePos++;
-    }else{
-      tiePos = 0; // zeven helped with this with the beak
-}
-*/
-
-
+      if(yesKeyPressed == true){
+        fill(factsColor);
+        textSize(18);
+        text(owlFacts[keyPressedCount], 850, 730);
+      }
 } // do not delete!
 
-
-// Facts?
-function keyPressed() {
-  if (value === 0) {
-    value = 255;
-  } else {
-    value = 0;
+function keyPressed(){
+  yesKeyPressed = true;
+  keyPressedCount++;
+  if(keyPressedCount >= owlFacts.length){
+    keyPressedCount = 0;
   }
 }
 
 // From p5js Reference
-
 function Jitter() {
   this.x = random(width);
   this.y = random(height);
@@ -380,3 +314,62 @@ function Jitter() {
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
 }
+
+/* --------
+These worked but changed my mind
+------- */
+
+// add moth and firefly
+// image (moth, 100, 300);
+// image (firefly, 200, 300);
+
+
+// change greeting to goodnight
+    // if(mouseOverOwl == false){
+    //   fill(255);
+    //   text(greeting, 850,150);
+    // } else {
+    //   fill('rgb(255,215,0)')
+    //   text(goodbye, 850, 200);
+    // }
+
+// Changed this from mousepressed to hit zone.
+/*
+ if(mouseIsPressed){
+      toePosX = toePosX + random(-1, 1);
+      //tiePos = 10;
+      tiePos++;
+    }else{
+      tiePos = 0; // zeven helped with this with the beak
+}
+*/
+
+// OLD HOVER OVER OLIVER
+    // var mouseOverOwl = false;
+    // var bodyDist = dist(bodyX, bodyY, mouseX, mouseY);
+    // console.log ("bodyDist: " + bodyDist);
+// if(bodyDist < 225){
+//   mouseOverOwl = true;
+//       r = 0;
+//       g = 51;
+//       b = 102;
+//       pupilColor=(112,128,144);
+//       // Moth follows mouse
+//       image(moth, mouseX, mouseY);
+// }  else {
+//   mouseOverOwl = false;
+//     r=67;
+//     g=142;
+//     b=172;
+//     pupilColor=('#cccccc');
+// }
+
+/* --------
+Everything I tried that did not work
+-------- */
+
+// Owl facts from CSV file
+// for (var i = 0; i < owlFacts.getRowCount(); i++){
+//   var owlInfo = owlFacts.get(i, 0);
+//   print(owlInfo);
+// }

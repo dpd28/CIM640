@@ -42,6 +42,10 @@ var moth;
 var firefly;
 // var bugs = []; // array of Jitter objects
 
+var selection, submitButton;
+var numberOfImages = 0; // container for pattern
+
+
 /* ------
 End Variables
 */
