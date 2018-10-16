@@ -80,6 +80,8 @@ var bellyBX = 563;
 var bellyBY = 600;
 var bellyBEdge = 20;
 
+var states = -1;
+
 /* ------------------- End Variables -------------- */
 
 function preload (){
@@ -117,6 +119,7 @@ function setup() {
       yesPressed = true;
       noPressed = false;
       resetPressed = false;
+      states = 1;
     }
   );
     noButton.mousePressed(function (){
@@ -126,12 +129,14 @@ function setup() {
       r = 67;
       g = 142;
       b = 172;
+      states = 2;
     }
   );
     resetButton.mousePressed(function (){
       yesPressed = false;
       noPressed = false;
       resetPressed = true;
+      states = 0;
     }
   );
 } // end setup
@@ -148,18 +153,18 @@ function draw() {
   textFont(myFont);
 
 // Button Outputs
-if(noPressed == true){
+if(states == 2){
     text("OK, maybe next time.", 850,150);
    }
 
-if(noPressed == false && yesPressed == false){
+if(states == 0){
     text(greeting, 850,150);
     r = 67;
     g = 142;
     b = 172;
    }
 
-if(yesPressed == true){
+if(states == 1){
      text("Yay! Meet the fireflies.\nThey make me smile.", 850,150);
      targetX = mouseX;
      targetY = mouseY; // current posiiton of Y
@@ -175,11 +180,6 @@ if(yesPressed == true){
      b = 102;
    }
 
-if(resetPressed == true){
-     r = 67;
-     g = 142;
-     b = 172;
-   }
 
 // ADD FOR JITTER
 for (var i=0; i<bugs.length; i++) {
