@@ -80,7 +80,7 @@ var bellyBX = 563;
 var bellyBY = 600;
 var bellyBEdge = 20;
 
-var states = -1;
+var states = 0;
 
 /* ------------------- End Variables -------------- */
 
@@ -153,10 +153,12 @@ function draw() {
   textFont(myFont);
 
 // Button Outputs
+// This is No Button Pressed
 if(states == 2){
     text("OK, maybe next time.", 850,150);
    }
 
+// This is Reset Button Pressed
 if(states == 0){
     text(greeting, 850,150);
     r = 67;
@@ -164,6 +166,7 @@ if(states == 0){
     b = 172;
    }
 
+// This is Yes Button Pressed
 if(states == 1){
      text("Yay! Meet the fireflies.\nThey make me smile.", 850,150);
      targetX = mouseX;
