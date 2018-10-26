@@ -4,6 +4,8 @@
 // what are the patterns you have repated over and over again in your character mid-term
 // create one function for your hit zone and find out if you are over htat particular area.
 
+// Intro to functions!
+
 var posX = 0;
 var posY = 0;
 var rectSize = 100;
