@@ -99,7 +99,7 @@ display(){
     rect(this.x, this.y, this.size, this.size); // now need to set the overlay
   }
 
-// actions
+// actions, lloks at boundaries of square and sets overlay
 check(mX, mY){
   if(mX > this.x && mX < this.x + this.size && mY > this.y && mY < this.y + this.size){
     this.overlay = true;
