@@ -14,25 +14,26 @@ Is there a way to create a water color effect?
 [Image by Factor43](http://factor43.com/?works=irregular-rings)
 
 ### Inputs
-MousePressed
+* MousePressed
 
 ### Outputs
-Poetry changes
-Watercolor design changes with poem
-Random display
+* Poetry changes
+* Watercolor design changes with poem
+* Random display
 
 ## 2. Musical Interaction or display with Colors and waves
 
 ![NinjaCodeArtist](assets/GenerativeArt.png)
+
 [Image by NinjaCodeArtist](https://www.instagram.com/ninjacodeartist/)
 
 ### Inputs
-MousePressed
-MousePosition
+* MousePressed
+* MousePosition
 
 ### Outputs
-Each color creates a sound
-Or interrupts a pattern
+* Each color creates a sound
+* Or interrupts a pattern
 
 
 ## 3. Data Visualization — Women Photograph
@@ -52,8 +53,8 @@ Example two above.
 **First piece of advice: Understand the numbers, the data**
 
 ### Inputs
-Unsure … Mouseover?
+* Unsure … Mouseover?
 
 ### Outputs
-The numbers are displayed - percentages
-Men vs women?
+* The numbers are displayed - percentages
+* Men vs women?
