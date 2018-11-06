@@ -45,7 +45,7 @@ Their website.
 
 How they have shared the numbers. Example one above.
 
-![womenphotographdata](assets/Women Photograph Bylines 2018 Q3.png)
+![womenphotographdata](assets/WomenPhotographBylines2018Q3.png)
 
 Example two above.
 
