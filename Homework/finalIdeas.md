@@ -23,8 +23,7 @@ Random display
 
 ## 2. Musical Interaction or display with Colors and waves
 
-
-![Factor 43 Irregular Rings](assets/GenerativeArt.png)
+![NinjaCodeArtist](assets/GenerativeArt.png)
 [Image by NinjaCodeArtist](https://www.instagram.com/ninjacodeartist/)
 
 ### Inputs
@@ -38,13 +37,16 @@ Or interrupts a pattern
 
 ## 3. Data Visualization — Women Photograph
 
-![haiku one](assets/women-photograph-700px.png)
+![womenphotographwebsite](assets/women-photograph-700px.png)
+
 Their website.
 
-![haiku one](assets/womenphotographtwitter-700px.png)
+![womenphotographtwitter](assets/womenphotographtwitter-700px.png)
+
 How they have shared the numbers. Example one above.
 
-![haiku one](assets/Women Photograph Bylines 2018 Q3.png)
+![womenphotographdata](assets/Women Photograph Bylines 2018 Q3.png)
+
 Example two above.
 
 **First piece of advice: Understand the numbers, the data**
