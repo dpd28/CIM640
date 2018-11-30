@@ -1,0 +1,9 @@
+---
+<start>: <5-line> % <7-line> % <5-line>
+<5-line>: <1> <4> |<1> <3> <1> |<1> <1> <3> | <1> <2> <2> | <1> <2> <1> <1> | <1> <1> <2> <1> | <1> <1> <1> <2> | <1> <1> <1> <1> <1> | <2> <3> | <2> <2> <1> | <2> <1> <2> | <2> <1> <1> <1> | <3> <2> | <3> <1> <1> | <4> <1> | <5>
+<7-line>: <1> <1> <5-line> | <2> <5-line> | <5-line> <1> <1> | <5-line> <2>
+<1>: nosh | and | sip | fruit | sinks | fate | you | brings | cloud | bursts | strikes | dark | wide | hair | ferns | thrive | dance | girls | fresh | snail | smile | eyes | stars | love | stripes | grass | cat | leaves | smile | she | wave | sea | through | sound | mind | smoke | warm | globes
+<2>: people | yellow | citrus | content | evening | faces | beguiles | maples | beneath | unfurls | exit | sprinkle | rooftop | kisses | trumpets | whispers | berries | morning | tickle | tendrils | lemon | snowflakes
+<3>: piano | tequila | nocturnal | abundant | fiddleheads | caresses | idyllic | peony | evenings | ladybug | surfaces
+<4>: eternity | alien | alligator | thunderstorm brews |  gold caresses | woo you away
+<5>: applause fills the air | bubbles laugh out loud | spring hopes melt away | broken wings quiver | breezes surf blood leaves | courage rests in peace
