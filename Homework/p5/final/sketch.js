@@ -5,18 +5,34 @@ var bgcolor;
 // button
 var poemButton;
 
-var rg; // testing riGrammar
+var rg; // testing with Dan Schiffman riGrammar
+
+// This is an array of words to replace 1 syllables
+var replaceOne = ["joy", "owls", "dog", "light", "limbs", "fate", "snow", "blood"];
+
+// This is an array of words to replace 2 syllables
+var replaceTwo = ["music", "water", "healing", "feather", "drowning", "goosebumps"];
+
+// This is an array of words to replace 3 syllables
+var replaceThree = ["enlighten", "peony", "gardenia", "rough waters", "light kisses"];
+
+// This is an array of words to replace 4 syllables
+var replaceFour = ["tears in your eyes", ];
+
+// This is an array of words to replace 5 syllables
+var replaceFive = ["moonlight sonata", "soprano shivers", "frazzled daisy spins"];
 
 function preload() {
     myFont = loadFont('assets/fonts/PERPETUASTD.OTF')
+    // BELOW DOES NOT WORK
     // yaml = loadStrings('data/haiku-grammar.yaml');
 }
 
 
 function setup() {
 // put setup code here
-// createCanvas(windowWidth, windowHeight);
 
+// TESTING with Dan Schiffman
 // rg = new RiGrammar();
 // rg.addRule('<start>','The <N> meows',1);
 // rg.addRule('<N>', 'cat | dog');
@@ -27,8 +43,7 @@ function setup() {
 rg = new RiGrammar();
 // // rg.loadFrom("/data/haiku-grammar.yaml"); ERRORS!
 rg.addRule('<start>', '<5-line> % <7-line> % <5-line>');
-rg.addRule('<5-line>', '<1> <4> |<1> <3> <1> |<1> <1> <3> | <1> <2> <2> | <1> <2> <1> <1> | <1> <1> <2> <1> | <1> <1> <1> <2> | <1> <1> <1> <1> <1> | <2> <3> | <2> <2> <1> | <2> <1> <2> | <2> <1> <1> <1> | <3> <2> | <3> <1> <1> | <4> <1> | <5>'
-);
+rg.addRule('<5-line>', '<1> <4> |<1> <3> <1> |<1> <1> <3> | <1> <2> <2> | <1> <2> <1> <1> | <1> <1> <2> <1> | <1> <1> <1> <2> | <1> <1> <1> <1> <1> | <2> <3> | <2> <2> <1> | <2> <1> <2> | <2> <1> <1> <1> | <3> <2> | <3> <1> <1> | <4> <1> | <5>');
 rg.addRule('<7-line>', '<1> <1> <5-line> | <2> <5-line> | <5-line> <1> <1> | <5-line> <2>');
 rg.addRule('<1>', 'nosh | and | sip | fruit | sinks | fate | you | brings | cloud | bursts | strikes | dark | wide | hair | ferns | thrive | dance | girls | fresh | snail | my | eyes | stars | love | stripes | grass | cat | leaves | smile | she | wave | sea | through | sound | mind | smoke | warm | globes');
 rg.addRule('<2>', 'people | yellow | citrus | content | evening | faces | beguiles | maples | beneath | unfurls | exit | sprinkle | rooftop | kisses | trumpets | whispers | berries | morning | tickle | tendrils | lemon | snowflakes');
@@ -84,8 +99,16 @@ function draw() {
   text(lines[1], width / 2, 275);
   text(lines[2], width / 2, 350);
 
-
-
+////////////////////////// PATTERN TEST /////////////////////////////
+// noFill();
+noStroke();
+for(var x = 50; x <= width-50; x += 50){
+  for(var y = 50; y <= width-50; y += 50){
+    // line(x-10, y-10, x+10, y+10);
+    // line(x+10, y-10, x-10, y+10);
+    ellipse(x, y, 10, 10);
+    }
+  }
 } // END DRAW DO NOT REMOVE
 
 function mousePressed () {
