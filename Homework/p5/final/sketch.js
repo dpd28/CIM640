@@ -1,35 +1,35 @@
-
+// STYLES
 var myFont;
 var bgcolor;
 
 // button
 var poemButton;
-
 var rg; // testing with Dan Schiffman riGrammar
 var rgr; // replace with these words
 var rg7;
-
-// This is an array of words to replace 1 syllables
-var replaceOne = ["joy", "owls", "dog", "light", "limbs", "fate", "snow", "blood"];
-
-// This is an array of words to replace 2 syllables
-var replaceTwo = ["music", "water", "healing", "feather", "drowning", "goosebumps"];
-
-// This is an array of words to replace 3 syllables
-var replaceThree = ["enlighten", "peony", "gardenia", "rough waters", "light kisses"];
-
-// This is an array of words to replace 4 syllables
-var replaceFour = ["tears in your eyes", ];
-
-// This is an array of words to replace 5 syllables
-var replaceFive = ["moonlight sonata", "soprano shivers", "frazzled daisy spins"];
-
 var recheck = false;
 
+// Give me confetti
+var balls = [];
+
+var imgA;
+var imgB;
+var imgC;
+var imgD;
+var imgE;
+
+
+
 function preload() {
-    myFont = loadFont('assets/fonts/PERPETUASTD.OTF')
+    myFont = loadFont('assets/fonts/DallianceOT-Roman.otf')
     // BELOW DOES NOT WORK
     // yaml = loadStrings('data/haiku-grammar.yaml');
+    imgA = loadImage("assets/imgs/sea-life-01@1x.png");  // Load the image
+    imgB = loadImage("assets/imgs/sea-life-02@1x.png");  // Load the image
+    imgC = loadImage("assets/imgs/sea-life-03@1x.png");  // Load the image
+    imgD = loadImage("assets/imgs/sea-life-04@1x.png");  // Load the image
+    imgE = loadImage("assets/imgs/sea-life-05@1x.png");  // Load the image
+
 }
 
 
@@ -87,61 +87,97 @@ rg7.addRule('<5>', 'moonlight sonata | soprano shivers | frazzled daisy spins');
   textSize(36);
   textAlign(CENTER);
 
-  select("body").style("background-color", "#ebebeb");
+  select("body").style("background-color", "#FFF");
   var container = createDiv(); //creates a div tag
   container.id("wrapper");
   // select("#container0").html("<h1>Hello World</h1>"); // u can do within the flow of your general program e.g. mousePressed
   select("#wrapper").style("width", "windowWidth");
   select("#wrapper").style("height", "windowHeight");
   select("#wrapper").style("margin", "0 auto");
-  select("#wrapper").style("padding", "20px");
+  select("#wrapper").style("padding", "0px");
   select("#wrapper").style("text-align", "center");
+
+
   var cnv = createCanvas(windowWidth, windowHeight); //this creates a canvas object
     cnv.id("mycanvas");
     // select("#{}mycanvas").center();
     cnv.parent("wrapper"); //refers to the variable. looks at the object
+    bgcolor = color(250);
 
-    bgcolor = color(200);
-// // Create buttons
-//       poemButton = createButton("Change Background");
-// // Position the button
-//       poemButton.position(100,500);
-}
+    // var container2 = createDiv();
+    // container2.id("poem");
+    // select("#poem").style("width", "800");
+    // select("#poem").style("height", "800");
+    // select("poem").style("background", "red");
 
 
+    ////////////////////////
+    // TESTING TESTING
+    ////////////////////////
+    // // Create buttons
+    //       poemButton = createButton("Change Background");
+    // // Position the button
+    //       poemButton.position(100,500);
+
+} // END SETUP
 
 function draw() {
   // put drawing code here
   // background(230, 240, 255);
-  // text("This is a test", 50, 100);
+  noStroke();
   background(bgcolor);
+// Click to activate background
   // fill(255, 0, 0);
   // rect(200, 200, 200, 200);
   // fill(255);
+
   textSize(60);
   // text('Click on background of canvas.', 100, 550);
   // text(rg, 100,100);
-
+  fill(0);
   text(lines[0], width / 2, 200);
   text(lines[1], width / 2, 275);
   text(lines[2], width / 2, 350);
+
 
 //////////////////////////
 // PATTERN TEST
 /////////////////////////////
 // noFill();
-noStroke();
-for(var x = 50; x <= width-50; x += 50){
-  for(var y = 50; y <= width-50; y += 50){
-    // line(x-10, y-10, x+10, y+10);
-    // line(x+10, y-10, x-10, y+10);
-    ellipse(x, y, 10, 10);
+// noStroke();
+// for(var x = 50; x <= width-50; x += 50){
+//   for(var y = 50; y <= width-50; y += 50){
+//     // line(x-10, y-10, x+10, y+10);
+//     // line(x+10, y-10, x-10, y+10);
+//     ellipse(x, y, 10, 10);
+        // line(x,y, width/2, height/2);
+//     }
+//   }
+
+
+
+// this for loop runs 50 times since balls.length is 50 (as defined in mousePressed() function)
+  for (var i = 0; i < balls.length; i++) {
+    balls[i].update();  //uses the code in balls.js to update the diameter and position of the ball
+    balls[i].render();  //uses the code in ball.js file to update the color of balls. Now it is set to random colors
+    if (balls[i].ballisFinished()) {
+       //Diameter of the ellipses are made to decrease with time.
+       //So when diameter becomes 0, that particular ball gets destroyed from memory by the below code
+      balls.splice(i, 1);
     }
   }
-} // END DRAW DO NOT REMOVE
+
+  // Add images
+    image(imgA, 150, 550);
+    image(imgB, 325, 525);
+    image(imgC, 550, 450);
+    image(imgD, 725, 400);
+    image(imgE, 1250, 525);
+
+} // END DRAW — DO NOT REMOVE
 
 function mousePressed () {
-  bgcolor = color(random(250, 170), random(250, 170), random(250, 170));
+  bgcolor = color(random(253, 225), random(253, 225), random(253, 225));
   var result = rg.expand();
   // pass into function
    var checkHaiku = new RiString(result);
@@ -153,7 +189,9 @@ function mousePressed () {
 
   // var replacedHaiku = checkHaiku;
   checkHaiku = checkHaiku.words();
-  //
+  ///////////////////
+  // THE ON-GOING REPLACE A REPEATING WORD SAGA CONTINUES BY ZEVEN …
+  //////////////////
   // console.log(checkHaiku);
    //   for (var i = 0; i < haiku.length; i++){
    //     for(var words in checkHaiku){
@@ -195,6 +233,13 @@ function mousePressed () {
   // }
   for (var i = 0; i < lines.length; i++){
     lines[i] = haiku[i];
+  }
+// Thanks Manouj for your help. Dance party.
+  if (mouseY < height) {
+    for (var i = 0; i < 50; i++) {
+      // adding new ball 50 times for each click
+      balls.push(new Ball((mouseX + random(-30, 30)), mouseY + random(-30, 30)));
+    }
   }
 } // End mousePressed
 
